@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^9.1.2",
+    "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.1.2",
     "@nestjs/platform-express": "^9.1.2",
     "@nestjs/platform-fastify": "^9.1.2",
@@ -29,7 +30,9 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "deepmerge": "^4.2.2",
+    "dotenv": "^16.0.3",
     "fastify-swagger": "^5.2.0",
+    "joi": "^17.7.0",
     "lodash": "^4.17.21",
     "mysql2": "^2.3.3",
     "nestjs-typeorm-paginate": "^4.0.2",
