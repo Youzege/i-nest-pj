@@ -1,13 +1,9 @@
-/*
- * @Author: Youzege
- * @Date: 2022-11-18 14:42:25
- * @LastEditors: Youzege
- * @LastEditTime: 2022-12-28 14:36:32
- */
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 
 import { Repository } from 'typeorm'
+
+import { Logs } from '../logs/logs.entity'
 
 import { User } from './entities/user.entity'
 
@@ -15,6 +11,7 @@ import { User } from './entities/user.entity'
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @InjectRepository(Logs) private readonly logsRepository: Repository<Logs>,
   ) {}
 
   findAll() {
@@ -23,6 +20,10 @@ export class UserService {
 
   find(username: string) {
     return this.userRepository.find({ where: { username } })
+  }
+
+  findOne(id: number) {
+    return this.userRepository.findOne({ where: { id } })
   }
 
   create(user: Partial<User>) {
@@ -37,5 +38,29 @@ export class UserService {
 
   delete(id: number) {
     return this.userRepository.delete(id)
+  }
+
+  findProfile(id: number) {
+    return this.userRepository.findOne({
+      where: {
+        id,
+      },
+      relations: {
+        profile: true,
+      },
+    })
+  }
+
+  async findLogs(id: number) {
+    const user = await this.findOne(id)
+
+    return this.logsRepository.find({
+      where: {
+        user,
+      },
+      relations: {
+        user: true,
+      },
+    })
   }
 }

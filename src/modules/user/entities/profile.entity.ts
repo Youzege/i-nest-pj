@@ -1,9 +1,3 @@
-/*
- * @Author: Youzege
- * @Date: 2022-11-18 14:48:50
- * @LastEditors: Youzege
- * @LastEditTime: 2022-11-18 14:57:35
- */
 import {
   Column,
   Entity,
