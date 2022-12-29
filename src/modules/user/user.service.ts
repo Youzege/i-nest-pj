@@ -63,4 +63,19 @@ export class UserService {
       },
     })
   }
+
+  findLogsByGroup(id: number) {
+    return this.logsRepository
+      .createQueryBuilder('logs')
+      .select('logs.result', 'result')
+      .addSelect('COUNT("logs.result")', 'count')
+      .leftJoinAndSelect('logs.user', 'user')
+      .where('user.id = :id', { id })
+      .groupBy('logs.result')
+      .orderBy('count', 'DESC')
+      .addOrderBy('result', 'DESC')
+      .offset(0)
+      .limit(3)
+      .getRawMany()
+  }
 }
