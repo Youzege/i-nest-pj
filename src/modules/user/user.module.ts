@@ -1,10 +1,14 @@
-/*
- * @Author: Youzege
- * @Date: 2022-11-18 14:40:08
- * @LastEditors: Youzege
- * @LastEditTime: 2022-11-18 14:41:36
- */
 import { Module } from '@nestjs/common'
 
-@Module({})
+import { TypeOrmModule } from '@nestjs/typeorm'
+
+import { User } from './entities/user.entity'
+import { UserController } from './user.controllers'
+import { UserService } from './user.service'
+
+@Module({
+  imports: [TypeOrmModule.forFeature([User])],
+  controllers: [UserController],
+  providers: [UserService],
+})
 export class UserModule {}

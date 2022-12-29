@@ -1,9 +1,3 @@
-/*
- * @Author: Youzege
- * @Date: 2022-10-14 10:57:22
- * @LastEditors: Youzege
- * @LastEditTime: 2022-11-11 10:26:54
- */
 import { NestFactory } from '@nestjs/core'
 import {
   FastifyAdapter,

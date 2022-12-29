@@ -1,9 +1,3 @@
-/*
- * @Author: Youzege
- * @Date: 2022-11-12 04:57:19
- * @LastEditors: Youzege
- * @LastEditTime: 2022-11-18 14:56:20
- */
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
@@ -14,8 +8,6 @@ import * as Joi from 'joi'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ConfigEnum } from './enum/config.enum'
-
-import { DemoModule } from './modules/demo/demo.module'
 
 import { Logs } from './modules/logs/logs.entity'
 import { Roles } from './modules/roles/roles.entity'
@@ -61,7 +53,6 @@ const envFilePath = `.env.${process.env.NODE_ENV || 'development'}`
           logging: ['error'],
         } as TypeOrmModuleOptions),
     }),
-    DemoModule,
     UserModule,
   ],
   controllers: [AppController],
