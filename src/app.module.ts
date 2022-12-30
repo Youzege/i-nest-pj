@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { Global, Module, Logger } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
 
@@ -18,6 +18,7 @@ import { UserModule } from './modules/user/user.module'
 
 const envFilePath = `.env.${process.env.NODE_ENV || 'development'}`
 
+@Global()
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -56,6 +57,7 @@ const envFilePath = `.env.${process.env.NODE_ENV || 'development'}`
     UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, Logger],
+  exports: [Logger],
 })
 export class AppModule {}
