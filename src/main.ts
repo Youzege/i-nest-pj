@@ -11,7 +11,8 @@ import * as winstom from 'winston'
 import 'winston-daily-rotate-file'
 
 import { AppModule } from './app.module'
-import { HTTPExceptionFilter } from './modules/filters/http-exception.filter'
+
+import { AllExceptionFilter } from './modules/filters/all-exception.filter'
 
 async function bootstrap() {
   const instance = createLogger({
@@ -62,11 +63,14 @@ async function bootstrap() {
       logger,
     },
   )
+
   // 前缀: 指定url前缀
   app.setGlobalPrefix('api')
   // 自定义约束-注入依赖
   useContainer(app.select(AppModule), { fallbackOnErrors: true })
-  app.useGlobalFilters(new HTTPExceptionFilter(logger))
+
+  const httpAdapter = app.get('HttpAdapterHost')
+  app.useGlobalFilters(new AllExceptionFilter(logger, httpAdapter))
   await app.listen(5174, '0.0.0.0')
 
   console.log('server: http://localhost:5174/api')

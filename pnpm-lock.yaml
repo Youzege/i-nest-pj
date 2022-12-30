@@ -15,6 +15,7 @@ specifiers:
   '@types/jest': 29.2.3
   '@types/lodash': ^4.14.190
   '@types/node': ^18.11.9
+  '@types/request-ip': ^0.0.37
   '@types/sanitize-html': ^2.6.2
   '@types/supertest': ^2.0.12
   '@typescript-eslint/eslint-plugin': ^5.45.0
@@ -42,6 +43,7 @@ specifiers:
   prettier: ^2.8.0
   prettier-plugin-organize-imports: ^3.2.1
   reflect-metadata: ^0.1.13
+  request-ip: ^3.3.0
   rimraf: ^3.0.2
   rxjs: ^7.5.7
   sanitize-html: ^2.7.3
@@ -75,6 +77,7 @@ dependencies:
   nest-winston: 1.8.0_a2lm2wzuatarjy2ihkhx2k5qdi
   nestjs-typeorm-paginate: 4.0.2_ar2uqf6ct6rjquxf6g7hq4sw6u
   reflect-metadata: 0.1.13
+  request-ip: 3.3.0
   rimraf: 3.0.2
   rxjs: 7.5.7
   sanitize-html: 2.7.3
@@ -90,6 +93,7 @@ devDependencies:
   '@types/jest': 29.2.3
   '@types/lodash': 4.14.190
   '@types/node': 18.11.9
+  '@types/request-ip': 0.0.37
   '@types/sanitize-html': 2.6.2
   '@types/supertest': 2.0.12
   '@typescript-eslint/eslint-plugin': 5.45.0_czs5uoqkd3podpy6vgtsxfc7au
@@ -1426,6 +1430,12 @@ packages:
 
   /@types/range-parser/1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
+    dev: true
+
+  /@types/request-ip/0.0.37:
+    resolution: {integrity: sha512-uw6/i3rQnpznxD7LtLaeuZytLhKZK6bRoTS6XVJlwxIOoOpEBU7bgKoVXDNtOg4Xl6riUKHa9bjMVrL6ESqYlQ==}
+    dependencies:
+      '@types/node': 18.11.9
     dev: true
 
   /@types/sanitize-html/2.6.2:
@@ -5304,6 +5314,10 @@ packages:
     resolution: {integrity: sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==}
     engines: {node: '>=8'}
     dev: true
+
+  /request-ip/3.3.0:
+    resolution: {integrity: sha512-cA6Xh6e0fDBBBwH77SLJaJPBmD3nWVAcF9/XAcsrIHdjhFzFiB5aNQFytdjCGPezU3ROwrR11IddKAM08vohxA==}
+    dev: false
 
   /require-directory/2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
