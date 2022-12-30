@@ -1,13 +1,18 @@
-import { Controller, Delete, Get, Patch, Post } from '@nestjs/common'
+import { Controller, Delete, Get, Logger, Patch, Post } from '@nestjs/common'
 
 import { UserService } from './user.service'
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  private logger = new Logger(UserController.name)
+
+  constructor(private readonly userService: UserService) {
+    this.logger.log('UserController Init')
+  }
 
   @Get('all')
   getUsers(): any {
+    this.logger.warn('获取所有用户')
     return this.userService.findAll()
   }
 
