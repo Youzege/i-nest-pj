@@ -10,6 +10,7 @@ import { AppService } from './app.service'
 import { ConfigEnum } from './enum/config.enum'
 
 import { Logs } from './modules/logs/logs.entity'
+import { LogsModule } from './modules/logs/logs.module'
 import { Roles } from './modules/roles/roles.entity'
 
 import { Profile } from './modules/user/entities/profile.entity'
@@ -55,6 +56,7 @@ const envFilePath = `.env.${process.env.NODE_ENV || 'development'}`
         } as TypeOrmModuleOptions),
     }),
     UserModule,
+    LogsModule,
   ],
   controllers: [AppController],
   providers: [AppService, Logger],

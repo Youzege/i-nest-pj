@@ -4,7 +4,6 @@ import {
   ExceptionFilter,
   HttpException,
   HttpStatus,
-  LoggerService,
 } from '@nestjs/common'
 import { HttpAdapterHost } from '@nestjs/core'
 
@@ -12,10 +11,7 @@ import * as requestIp from 'request-ip'
 
 @Catch()
 export class AllExceptionFilter implements ExceptionFilter {
-  constructor(
-    private readonly logger: LoggerService,
-    private readonly httpAdapterHost: HttpAdapterHost,
-  ) {}
+  constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
   catch(exception: HttpException, host: ArgumentsHost) {
     const { httpAdapter } = this.httpAdapterHost
@@ -40,7 +36,6 @@ export class AllExceptionFilter implements ExceptionFilter {
       error: exception.getResponse() || 'Interval Server Error',
     }
 
-    this.logger.error('Youzege', responseBody)
     httpAdapter.reply(reply, responseBody, httpStatus)
   }
 }
