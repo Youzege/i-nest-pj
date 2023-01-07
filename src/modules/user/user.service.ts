@@ -5,6 +5,8 @@ import { Repository } from 'typeorm'
 
 import { Logs } from '../logs/logs.entity'
 
+import { GetUserDTO } from './dto/get-user.dto'
+
 import { User } from './entities/user.entity'
 
 @Injectable()
@@ -14,8 +16,35 @@ export class UserService {
     @InjectRepository(Logs) private readonly logsRepository: Repository<Logs>,
   ) {}
 
-  findAll() {
-    return this.userRepository.find()
+  findAll(query: GetUserDTO) {
+    const { limit, page, username, gender, role } = query
+    const take = limit || 10
+    const skip = ((page || 1) - 1) * take
+
+    return this.userRepository.find({
+      select: {
+        id: true,
+        username: true,
+        profile: {
+          gender: true,
+        },
+      },
+      relations: {
+        profile: true,
+        roles: true,
+      },
+      where: {
+        username,
+        profile: {
+          gender,
+        },
+        roles: {
+          id: role,
+        },
+      },
+      take,
+      skip,
+    })
   }
 
   find(username: string) {

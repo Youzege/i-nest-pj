@@ -1,4 +1,16 @@
-import { Controller, Delete, Get, Logger, Patch, Post } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Logger,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common'
+
+import { GetUserDTO } from './dto/get-user.dto'
 
 import { UserService } from './user.service'
 
@@ -11,44 +23,35 @@ export class UserController {
     this.logger.log('UserController Init', UserController.name)
   }
 
-  @Get('all')
-  getUsers(): any {
-    this.logger.warn('获取所有用户')
-    return this.userService.findAll()
+  @Get()
+  getUsers(@Query() query: GetUserDTO): any {
+    return this.userService.findAll(query)
   }
 
-  @Get()
-  getUser(username: string) {
-    return this.userService.find(username)
+  @Get('/:id')
+  getUser(@Param('id') id: number) {
+    return this.userService.findOne(id)
   }
 
   @Post()
-  addUser(): any {
-    const user = {
-      username: 'Youzege',
-      password: '123456',
-    }
-
-    return this.userService.create(user)
+  addUser(@Body() dto: any): any {
+    return this.userService.create(dto)
   }
 
-  @Patch()
-  updateUser(): any {
-    const user = {
-      username: 'Youzege Up',
-    }
-
-    return this.userService.update(1, user)
+  @Patch(':id')
+  updateUser(@Body() dto: any, @Param('id') id: number): any {
+    return this.userService.update(id, dto)
   }
 
-  @Delete()
-  deleteOne(): any {
-    return this.userService.delete(1)
+  @Delete('/:id')
+  deleteOne(@Param('id') id: number): any {
+    return this.userService.delete(id)
   }
 
   @Get('profile')
-  getProfile(): any {
-    return this.userService.findProfile(2)
+  getProfile(@Query() query: any): any {
+    const { id } = query
+    return this.userService.findProfile(id)
   }
 
   @Get('logs')
