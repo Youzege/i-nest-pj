@@ -8,13 +8,17 @@ import {
   Patch,
   Post,
   Query,
+  UseFilters,
 } from '@nestjs/common'
+
+import { TypeormFilter } from '../core/filters'
 
 import { GetUserDTO } from './dto/get-user.dto'
 
 import { UserService } from './user.service'
 
 @Controller('user')
+@UseFilters(new TypeormFilter())
 export class UserController {
   constructor(
     private readonly userService: UserService,

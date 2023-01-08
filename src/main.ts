@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import {
   FastifyAdapter,
@@ -23,7 +24,8 @@ async function bootstrap() {
   useContainer(app.select(AppModule), { fallbackOnErrors: true })
 
   const httpAdapter = app.get('HttpAdapterHost')
-  app.useGlobalFilters(new AllExceptionFilter(httpAdapter))
+  const logger = new Logger()
+  app.useGlobalFilters(new AllExceptionFilter(httpAdapter, logger))
 
   await app.listen(5174, '0.0.0.0')
 

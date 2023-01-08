@@ -6,9 +6,6 @@ import * as dotenv from 'dotenv'
 import * as Joi from 'joi'
 import { connectionParams } from 'ormconfig'
 
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-
 import { LogsModule } from './modules/logs/logs.module'
 
 import { UserModule } from './modules/user/user.module'
@@ -44,8 +41,8 @@ const envFilePath = `.env.${process.env.NODE_ENV || 'development'}`
     UserModule,
     LogsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, Logger],
+  controllers: [],
+  providers: [Logger],
   exports: [Logger],
 })
 export class AppModule {}
