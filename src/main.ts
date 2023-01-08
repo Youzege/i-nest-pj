@@ -8,7 +8,7 @@ import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston'
 
 import { AppModule } from './app.module'
 
-import { AllExceptionFilter } from './modules/filters/all-exception.filter'
+import { AllExceptionFilter } from './modules/core/filters/all-exception.filter'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(

@@ -53,19 +53,4 @@ export class UserController {
     const { id } = query
     return this.userService.findProfile(id)
   }
-
-  @Get('logs')
-  getLogs(): any {
-    return this.userService.findLogs(2)
-  }
-
-  @Get('logsByGroup')
-  async getLogsGroup(): Promise<any> {
-    const res = await this.userService.findLogsByGroup(2)
-
-    return res.map((o) => ({
-      result: o.result,
-      count: o.count,
-    }))
-  }
 }
